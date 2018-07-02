@@ -101,7 +101,7 @@ TBD
 
 HTTP Header:
 
-- Authorization: Bearer {JWT_token}
+- exp-authorization: {JWT_token}
 	
 JWT payload 内容如下
 	
@@ -115,8 +115,7 @@ JWT payload 内容如下
 ```
 	
 JWT token 在用户 login/signup 的时候获取
-	
-- super-token: {super\_key\_string} （用于调试时绕过用户 token 的获取，当系统配置了 super token 并且客户端 header 带有同样的 super token，鉴权即可成功）
+
 
 ### /order/process _[POST, Authentication]_
 
