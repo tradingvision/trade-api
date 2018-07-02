@@ -97,6 +97,8 @@ TBD
 
 ## REST API
 
+endpoint: `https://api.coin-weight.com/v1`
+
 ### **Authentication & Authorization**
 
 HTTP Header:
