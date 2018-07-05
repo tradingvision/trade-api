@@ -335,3 +335,129 @@ ok response
 |:---:|---|
 | 0 | OK |
 | 500 | Unexpected Error (wrong owner) |
+
+
+### /strategy/get [GET]
+
+ok response
+
+```javascript
+{"1": {
+      'name': 'octmm',
+      'exchange': 'binance',
+      'strategyType': 'SingleMarketMaker',
+      'symbols': [{
+        'name': 'OCT-ETH',
+        'currency': 'ETH',
+        'strategy': 'octmm',
+        'margin': 0.1,
+        'orderNumber': 10,
+        'spreadPct': 0.03,
+        'orderQty': 10,
+        'qtyVar': 0.01,
+        'priceStep': 0.0001,
+        'priceVar': 0.0001
+      }, {
+        'name': 'OCT-BTC',
+        'currency': 'BTC',
+        'strategy': 'octmm',
+        'margin': 0.01,
+        'orderNumber': 10,
+        'spreadPct': 0.03,
+        'orderQty': 10,
+        'qtyVar': 0.01,
+        'priceStep': 0.0001,
+        'priceVar': 0.0001
+      }]
+    }}
+```
+
+| error_code | reason |
+|:---:|---|
+| 0 | OK |
+| 500 | Unexpected Error (wrong owner) |
+
+
+### /strategy/update _[POST]_
+
+request
+
+```javascript
+{
+  "userid": "123",
+  "strategy": {"1": {
+      'name': 'octmm',
+      'exchange': 'binance',
+      'strategyType': 'SingleMarketMaker',
+      'symbols': [{
+        'name': 'OCT-ETH',
+        'currency': 'ETH',
+        'strategy': 'octmm',
+        'margin': 0.1,
+        'orderNumber': 10,
+        'spreadPct': 0.03,
+        'orderQty': 10,
+        'qtyVar': 0.01,
+        'priceStep': 0.0001,
+        'priceVar': 0.0001
+      }, {
+        'name': 'OCT-BTC',
+        'currency': 'BTC',
+        'strategy': 'octmm',
+        'margin': 0.01,
+        'orderNumber': 10,
+        'spreadPct': 0.03,
+        'orderQty': 10,
+        'qtyVar': 0.01,
+        'priceStep': 0.0001,
+        'priceVar': 0.0001
+      }]
+    }}
+}
+```
+
+ok response
+
+```javascript
+{
+  "success": true,
+  "seq_no": 0,
+  "error_code": 0,
+  "data": {
+    "strategy": {"1": {
+      'name': 'octmm',
+      'exchange': 'binance',
+      'strategyType': 'SingleMarketMaker',
+      'symbols': [{
+        'name': 'OCT-ETH',
+        'currency': 'ETH',
+        'strategy': 'octmm',
+        'margin': 0.1,
+        'orderNumber': 10,
+        'spreadPct': 0.03,
+        'orderQty': 10,
+        'qtyVar': 0.01,
+        'priceStep': 0.0001,
+        'priceVar': 0.0001
+      }, {
+        'name': 'OCT-BTC',
+        'currency': 'BTC',
+        'strategy': 'octmm',
+        'margin': 0.01,
+        'orderNumber': 10,
+        'spreadPct': 0.03,
+        'orderQty': 10,
+        'qtyVar': 0.01,
+        'priceStep': 0.0001,
+        'priceVar': 0.0001
+      }]
+    }}
+  }
+}
+```
+
+
+| error_code | reason |
+|:---:|---|
+| 0 | OK |
+| 500 | Unexpected Error (wrong owner) |
