@@ -4,62 +4,299 @@
 
 ## Order API
 
-### /order/process _[POST, Authentication]_
+### basic models
 
 operation:
   - ORDER_NEW
   - ORDER_UPDATE
   - ORDER_CANCEL
 
-example: to create new order
+orderType:
+  - LIMIT
+  - MARKET
+
+side:
+  - BID
+  - ASK
+
+executionType:
+  - EXECUTION_REJECTED
+  - EXECUTION_ACK
+  - EXECUTION_PARTIAL_FILLED
+  - EXECUTION_FILLED
+  - EXECUTION_CANCELING
+  - EXECUTION_CANCELED
+  - EXECUTION_PARTIAL_CANCELED
+
+Order Model
+```javascript
+{
+  "streetOrderId":"1234567",
+  "orderType":"LIMIT",
+  "symbol":"BTC-USDT",
+  "side":"BID",
+  "owner":"2",
+  "counterParty":"binance",
+  "price":"0.00123",
+  "quantity":"10.000",
+  "filledPrice":"0.00",
+  "filledQuantity":"0.00",
+  "executionType":"EXECUTION_ACK",
+  "createTime":1530861306000,
+  "executionTime":1530861306000
+}
+```
+
+General Response Model
+
+- **ok** response
+```javascript
+{
+  "success":true,
+  "errorCode":0,
+  "errorMsg":"ok",
+  "data": {
+    // ...
+  }
+}
+```
+
+
+- **error** response
+
+```javascript
+{
+  "success":false,
+  "errorCode":403,
+  "errorMsg":"authentication failure",
+  "data":null
+}
+```
+
+
+### /order/create _[POST, Authentication]_
+
+```javascript
+{  
+  "orderType":"LIMIT",
+  "symbol":"BTC-USDT",
+  "side":"BID",
+  "owner":"2",
+  "counterParty":"binance",
+  "price":"0.00123",
+  "quantity":"10.000"
+}
+```
+
+Response
+
+```javascript
+{
+  "success":true,
+  "errorCode":0,
+  "errorMsg":"ok",
+  "data":{
+    "streetOrderId":"1234567",
+    "orderType":"LIMIT",
+    "symbol":"BTC-USDT",
+    "side":"BID",
+    "owner":"2",
+    "counterParty":"binance",
+    "price":"0.00123",
+    "quantity":"10.000",
+    "filledPrice":"0.00",
+    "filledQuantity":"0.00",
+    "executionType":"EXECUTION_ACK",
+    "createTime":1530861306000,
+    "executionTime":1530861306000
+  }
+}
+```
+
+### /order/update _[POST, Authentication]_
+Only unfilled order can be updated, update field only support for:
+  - price
+  - quantity
+
+Request Body
 ```javascript
 {
   "streetOrderId": "1234567",
-  "originalOrderId": "orgin12345",
-  "operation": "ORDER_NEW",
-  "type": "LIMIT",
-  "orderPrice": "0.00123",
-  "totalQuantity": "10.000",
-  "symbol": "BTC-USDT",
-  "side": "BID",
+  "price": "0.00145",
+  "quantity": "10.000",
   "owner": "2",
   "counterParty": "binance"
 }
 ```
 
-response
+Response: successfully updated
 
 ```javascript
 {
-  "success": false,
-  "seq_no": 0,
-  "error_code": 403,
-  "data": null
+  "success":true,
+  "errorCode":0,
+  "errorMsg":"ok",
+  "data":{
+    "streetOrderId":"1234567",
+    "orderType":"LIMIT",
+    "symbol":"BTC-USDT",
+    "side":"BID",
+    "owner":"2",
+    "counterParty":"binance",
+    "price":"0.00145",
+    "quantity":"10.000",
+    "filledPrice":"0.00",
+    "filledQuantity":"0.00",
+    "executionType":"EXECUTION_ACK",
+    "createTime":1530861306000,
+    "executionTime":1530861306000
+  }
 }
 ```
 
-| error_code | reason |
-|:---:|---|
-| 0 | OK |
-| 403 | Authentication failure |
+Response: failed to update
 
-### /order/history _[GET, Authentication]_
-Request Parameters
-- owner: 1234
-- pageIndex: 0
-- pageSize: 10
-
-Response body
+```javascript
+{
+  "success":false,
+  "errorCode":1000,
+  "errorMsg":"cannot update the order",
+  "data":{
+    "streetOrderId":"1234567",
+    "orderType":"LIMIT",
+    "symbol":"BTC-USDT",
+    "side":"BID",
+    "owner":"2",
+    "counterParty":"binance",
+    "price":"0.00123",
+    "quantity":"10.000",
+    "filledPrice":"0.00",
+    "filledQuantity":"0.00",
+    "executionType":"EXECUTION_PARTIAL_FILLED",
+    "createTime":1530861306000,
+    "executionTime":1530861306000
+  }
+}
 ```
-TBD
+
+
+### /order/cancel _[POST, Authentication]_
+Request Body
+
+```javascript
+{
+  "streetOrderId": "1234567",
+  "owner": "2",
+  "counterParty": "binance"
+}
+```
+
+Response
+
+```javascript
+{
+  "success":true,
+  "errorCode":0,
+  "errorMsg":"ok",
+  "data":{
+    "streetOrderId":"1234567",
+    "orderType":"LIMIT",
+    "symbol":"BTC-USDT",
+    "side":"BID",
+    "owner":"2",
+    "counterParty":"binance",
+    "price":"0.00123",
+    "quantity":"10.000",
+    "filledPrice":"0.00",
+    "filledQuantity":"0.00",
+    "executionType":"EXECUTION_CANCELED",
+    "createTime":1530861306000,
+    "executionTime":1530861306000
+  }
+}
 ```
 
 ### /order/cancel-all _[POST, Authentication]_
-Request body
+
+Request Body:
+
 ```javascript
 {
-	"owner": "123",
-	"canceledCounterParty": ["huobi", "binance"]
+  "owner":"123",
+  "selectedCounterParty":[
+    "huobi",
+    "binance"
+  ]
+}
+```
+
+Response:
+
+```javascript
+{
+  "owner":"123",
+  "canceledCounterParty":[
+    "huobi",
+    "binance"
+  ]
+}
+```
+
+### /order/info _[POST, Authentication]_
+
+Request Body
+- owner: 1234
+- type: active (optional, value=`active`, `filled`, `all`, default value=`all`)
+- pageIndex: 0 (optional, default value=`0`)
+- pageSize: 10 (optional, default value=`10`)
+
+Request Example:
+```
+/order/info?owner=1234&pageIndex=0&pageSize=20
+```
+
+Response body
+```javascript
+{
+  "success":true,
+  "errorCode":0,
+  "errorMsg":"ok",
+  "data":{
+    "totalPage":10,
+    "hasNext":true,
+    "content":[
+      {
+        "streetOrderId":"1234567",
+        "orderType":"LIMIT",
+        "symbol":"BTC-USDT",
+        "side":"BID",
+        "owner":"2",
+        "counterParty":"binance",
+        "price":"0.00123",
+        "quantity":"10.000",
+        "filledPrice":"0.00",
+        "filledQuantity":"0.00",
+        "executionType":"EXECUTION_CANCELED",
+        "createTime":1530861306000,
+        "executionTime":1530861306000
+      },
+      {
+        "streetOrderId":"1345678",
+        "orderType":"LIMIT",
+        "symbol":"BTC-USDT",
+        "side":"ASK",
+        "owner":"2",
+        "counterParty":"huobi",
+        "price":"0.00123",
+        "quantity":"10.000",
+        "filledPrice":"0.00",
+        "filledQuantity":"0.00",
+        "executionType":"EXECUTION_FILLED",
+        "createTime":1530861306000,
+        "executionTime":1530861306000
+      }
+    ]
+  }
 }
 ```
 
@@ -82,27 +319,16 @@ Response
 ```javascript
 {
   "success": true,
-  "seq_no": 0,
-  "error_code": 0,
+  "errorCode": 0,
   "data": {
     "uid": 2,
-    "user_name": "abc",
+    "userName": "abc",
     "group": "group1",
-    "auth_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIsImlzcyI6ImV4IiwiZXhwIjoxNTE3MTQ4NjYwLCJncm91cCI6Imdyb3VwMSJ9.YrYttRaGcFWro6WFsGkm3arnSQXyF1ZOWfT2-Uve6tI"
+    "authToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIsImlzcyI6ImV4IiwiZXhwIjoxNTE3MTQ4NjYwLCJncm91cCI6Imdyb3VwMSJ9.YrYttRaGcFWro6WFsGkm3arnSQXyF1ZOWfT2-Uve6tI"
   }
 }
 ```
-
 error response
-
-```javascript
-{
-  "success": false,
-  "seq_no": 0,
-  "error_code": 2,
-  "data": null
-}
-```
 
 | error_code | reason |
 |:---:|---|
@@ -127,27 +353,17 @@ ok response
 ```javascript
 {
   "success": true,
-  "seq_no": 0,
-  "error_code": 0,
+  "errorCode": 0,
   "data": {
     "uid": 2,
-    "user_name": "abc",
+    "userName": "abc",
     "group": "group1",
-    "auth_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjQsImlzcyI6ImV4IiwiZXhwIjoxNTE3MTQ4OTQwLCJncm91cCI6Imdyb3VwMSJ9.Z6GXtZGPCxt2v-e5E_lQ_8sXrgQHu4uwKJjrdof0Cvc"
+    "authToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjQsImlzcyI6ImV4IiwiZXhwIjoxNTE3MTQ4OTQwLCJncm91cCI6Imdyb3VwMSJ9.Z6GXtZGPCxt2v-e5E_lQ_8sXrgQHu4uwKJjrdof0Cvc"
   }
 }
 ```
 
 error response
-
-```javascript
-{
-  "success": false,
-  "seq_no": 0,
-  "error_code": 5,
-  "data": null
-}
-```
 
 | error_code | reason |
 |:---:|---|
@@ -167,7 +383,6 @@ ok response
 ```javascript
 {
     "success": true,
-    "seqNo": 0,
     "errorCode": 0,
     "errorMsg": "ok",
     "data": [
@@ -203,7 +418,6 @@ ok response
 ```javascript
 {
     "success": true,
-    "seqNo": 0,
     "errorCode": 0,
     "errorMsg": "ok",
     "data": null
@@ -232,7 +446,6 @@ ok response
 ```javascript
 {
     "success": true,
-    "seqNo": 0,
     "errorCode": 0,
     "errorMsg": "ok",
     "data": null

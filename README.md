@@ -6,7 +6,7 @@ HTTP Header:
 
 - exp-authorization: {JWT_token}
 	
-JWT payload 内容如下
+JWT payload
 	
 ```javascript
 {
@@ -17,7 +17,8 @@ JWT payload 内容如下
 }
 ```
 	
-- JWT token 在用户 login/signup 的时候获取
+- Get JWT token
+You can find JWT token from login/signup response
 
 
 ## Websocket API
