@@ -244,7 +244,7 @@ Response:
 
 ### /order/active _[GET, Authentication]_
 
-`Active Order Event`
+`Active Order:`
 - EXECUTION_ACK
 - EXECUTION_PARTIAL_FILLED
 - EXECUTION_CANCELING
@@ -426,6 +426,66 @@ error response
 | 3 | Phone duplication |
 | 4 | Account duplication |
 | 5 | Verification code error ||
+
+
+### /user/pwd/change _[POST, Authentication]_
+
+request
+
+```javascript
+{
+  "uid": 1234
+  "oldPassword": "old_password",
+  "newPassword": "new_password"
+}
+```
+
+### /user/phone/verify _[POST, Authentication]_
+request
+
+```javascript
+{
+  "uid": 1234
+  "phone": "123456789",
+  "countryCode": "+86"
+}
+```
+
+### /user/phone/bind _[POST, Authentication]_
+
+request
+
+```javascript
+{
+  "uid": 1234
+  "phone": "123456789",
+  "countryCode": "+86",
+  "verificationCode": "123456"
+}
+```
+
+### /user/totp/new _[POST, Authentication]_
+
+response
+
+```javascript
+{
+  "bind": false
+  "hashKey": "asbcas123sdasd",
+  "qrCodeText": "asbcas123sdasdasbcas123sdasd" // javascript generate QR code
+}
+```
+
+### /user/totp/bind _[POST, Authentication]_
+
+response
+
+```javascript
+{
+  "uid": 1234
+  "authCode": "025187" // auth code from google authenticator
+}
+```
 
 ## API key & Secret key API
 
