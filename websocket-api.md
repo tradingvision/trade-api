@@ -7,7 +7,7 @@
 wss://api.coin-weight.com/ws?uid=0
 ```
 
-- login user: will automactically subscribe all his order update stream
+- login user: will automatically subscribe all his order update stream
 
 ```
 wss://api.coin-weight.com/ws?uid={uid}&token={jwt}
@@ -19,25 +19,32 @@ example:
 wss://api.coin-weight.com/ws?uid=1&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjEsImlzcyI6ImV4IiwiZXhwIjoxNTI5MTcxMDE0LCJncm91cCI6Imdyb3VwMSJ9.s-wIDiBExMGCCyl-srynv1TrRtRi74lbqy3zx0Iyb44
 ```
 
-### Subscription command
+### Subscribe & UnSubscribe
 
 Notice:
   - use `seq` to track the response for the request
 
 - Subscribe Topic
-  - Request
-    ```
+  - Request Example: subscribe depth price
+    ```javascript
     {
-        "type": "SUB",
-        "seq": 1,
-        "data": {
-            "symbol": "BTC-USDT",
-            "counterParty": "binance"
+    "type":"SUB.DEPTH-PRICE",
+    "seq":1,
+    "data":[
+        {
+        "symbol":"BTC-USDT",
+        "counterParty":"binance"
+        },
+        {
+        "symbol":"BTC-USDT",
+        "counterParty":"huobi"
         }
+    ]
     }
     ```
+
   - Response
-    ```
+    ```javascript
     {
         "errorCode": 0,
         "errorMsg": "ok",
@@ -46,19 +53,25 @@ Notice:
     ```
 
 - UnSubscribe Topic
-  - Request
-    ```
+  - Request Example: UnSubscribe depth price
+    ```javascript
     {
-        "type": "UNSUB",
-        "seq": 2,
-        "data": {
-            "symbol": "BTC-USDT",
-            "counterParty": "binance"
+    "type":"UNSUB.DEPTH-PRICE",
+    "seq":1,
+    "data":[
+        {
+        "symbol":"BTC-USDT",
+        "counterParty":"binance"
+        },
+        {
+        "symbol":"BTC-USDT",
+        "counterParty":"huobi"
         }
+    ]
     }
     ```
   - Response
-    ```
+    ```javascript
     {
         "errorCode": 0,
         "errorMsg": "ok",
@@ -66,51 +79,226 @@ Notice:
     }
     ```
 
-### Data 
+### 1. Depth Price
 
-- Depth price data
-```
+#### Sub request
+```javascript
 {
-	"type": "streetPrice",
-	"data": {
-		"counterParty": "binance",
-		"symbol": "BTC-USDT",
-		"bids": [{
-			"price": "6323.98000000",
-			"quantity": "2.87027100"
-		}, {
-			"price": "6322.99000000",
-			"quantity": "1.78365300"
-		}, {
-			"price": "6316.98000000",
-			"quantity": "0.63262900"
-		}, {
-			"price": "6316.61000000",
-			"quantity": "0.37062700"
-		}, {
-			"price": "6315.65000000",
-			"quantity": "0.01000000"
-		}],
-		"asks": [{
-			"price": "6324.86000000",
-			"quantity": "0.02246900"
-		}, {
-			"price": "6325.00000000",
-			"quantity": "3.13870000"
-		}, {
-			"price": "6325.50000000",
-			"quantity": "0.10000000"
-		}, {
-			"price": "6325.81000000",
-			"quantity": "0.24000000"
-		}, {
-			"price": "6326.00000000",
-			"quantity": "0.08772600"
-		}]
-	}
+  "type":"SUB.DEPTH-PRICE",
+  "seq":1,
+  "data":[
+    {
+      "symbol":"BTC-USDT",
+      "counterParty":"binance"
+    },
+    {
+      "symbol":"BTC-USDT",
+      "counterParty":"huobi"
+    }
+  ]
 }
 ```
 
-- User active order update data
+#### Depth price data
+```javascript
+{
+  "type":"depthPrice",
+  "data":{
+    "counterParty":"binance",
+    "symbol":"BTC-USDT",
+    "bids":[
+      {
+        "price":"6323.98000000",
+        "quantity":"2.87027100"
+      },
+      {
+        "price":"6322.99000000",
+        "quantity":"1.78365300"
+      },
+      {
+        "price":"6316.98000000",
+        "quantity":"0.63262900"
+      },
+      {
+        "price":"6316.61000000",
+        "quantity":"0.37062700"
+      },
+      {
+        "price":"6315.65000000",
+        "quantity":"0.01000000"
+      }
+    ],
+    "asks":[
+      {
+        "price":"6324.86000000",
+        "quantity":"0.02246900"
+      },
+      {
+        "price":"6325.00000000",
+        "quantity":"3.13870000"
+      },
+      {
+        "price":"6325.50000000",
+        "quantity":"0.10000000"
+      },
+      {
+        "price":"6325.81000000",
+        "quantity":"0.24000000"
+      },
+      {
+        "price":"6326.00000000",
+        "quantity":"0.08772600"
+      }
+    ]
+  }
+}
+```
 
-TBD
+### 2. Simple Price
+
+#### Sub request
+```javascript
+{
+  "type":"SUB.SIMPLE-PRICE",
+  "seq":1,
+  "data":null
+}
+```
+
+#### Simple price data
+```javascript
+{
+  "type":"simplePrice",
+  "data":[
+    {
+      "counterParty":"binance",
+      "symbol":"BTC-USDT",
+      "bid":{
+        "price":"6323.98000000",
+        "quantity":"2.87027100"
+      },
+      "ask":{
+        "price":"6324.86000000",
+        "quantity":"0.02246900"
+      }
+    },
+    {
+      "counterParty":"huobi",
+      "symbol":"BTC-USDT",
+      "bid":{
+        "price":"6323.98000000",
+        "quantity":"2.87027100"
+      },
+      "ask":{
+        "price":"6324.86000000",
+        "quantity":"0.02246900"
+      }
+    }
+  ]
+}
+```
+
+### 3. Market Info
+#### Sub request
+```javascript
+{
+  "type":"SUB.MARKET-INFO",
+  "seq":1,
+  "data":null
+}
+```
+
+#### Market Info Data
+```javascript
+{
+  "type":"marketInfo",
+  "data":[
+    {
+      "counterParty":"binance",
+      "symbol":"BTC-USDT",
+      "last":"1.111",
+      "change":0.05,
+      "open":"1.123",
+      "high":"1.222",
+      "low":"1.001",
+      "volume":"12324123123.123"
+    },
+    {
+      "counterParty":"huobi",
+      "symbol":"BTC-USDT",
+      "last":"1.121",
+      "change":0.06,
+      "open":"1.133",
+      "high":"1.122",
+      "low":"1.041",
+      "volume":"999923.123"
+    }
+  ]
+}
+```
+
+### **4. User Order Event**
+
+#### Sub
+`by default automatically subscribed when user login`
+
+#### Order Event Data
+
+`Active Order Event`
+- EXECUTION_ACK
+- EXECUTION_PARTIAL_FILLED
+- EXECUTION_CANCELING
+
+```javascript
+{
+  "type":"userOrder",
+  "data":{
+    "status":"active",
+    "order":{
+      "streetOrderId":"1234567",
+      "orderType":"LIMIT",
+      "symbol":"BTC-USDT",
+      "side":"BID",
+      "owner":"2",
+      "counterParty":"binance",
+      "price":"0.00123",
+      "quantity":"10.000",
+      "filledPrice":"0.00",
+      "filledQuantity":"0.00",
+      "executionType":"EXECUTION_ACK",
+      "createTime":1530861306000,
+      "executionTime":1530861306000
+    }
+  }
+}
+```
+
+`Inactive Order Event`
+- EXECUTION_FILLED
+- EXECUTION_CANCELED
+- EXECUTION_PARTIAL_CANCELED
+
+```javascript
+{
+  "type":"userOrder",
+  "data":{
+    "status":"inactive",
+    "order":{
+      "streetOrderId":"1234567",
+      "orderType":"LIMIT",
+      "symbol":"BTC-USDT",
+      "side":"BID",
+      "owner":"2",
+      "counterParty":"binance",
+      "price":"0.00123",
+      "quantity":"10.000",
+      "filledPrice":"0.00",
+      "filledQuantity":"0.00",
+      "executionType":"EXECUTION_FILLED",
+      "createTime":1530861306000,
+      "executionTime":1530861306000
+    }
+  }
+}
+```
+

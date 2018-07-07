@@ -2,31 +2,24 @@
 ## Endpoint: 
 `https://api.coin-weight.com/v1`
 
-## Order API
-
-### basic models
-
-operation:
-  - ORDER_NEW
-  - ORDER_UPDATE
-  - ORDER_CANCEL
+## Basic Models
 
 orderType:
-  - LIMIT
-  - MARKET
+- LIMIT
+- MARKET
 
 side:
-  - BID
-  - ASK
+- BID
+- ASK
 
 executionType:
-  - EXECUTION_REJECTED
-  - EXECUTION_ACK
-  - EXECUTION_PARTIAL_FILLED
-  - EXECUTION_FILLED
-  - EXECUTION_CANCELING
-  - EXECUTION_CANCELED
-  - EXECUTION_PARTIAL_CANCELED
+- EXECUTION_REJECTED
+- EXECUTION_ACK
+- EXECUTION_PARTIAL_FILLED
+- EXECUTION_FILLED
+- EXECUTION_CANCELING
+- EXECUTION_CANCELED
+- EXECUTION_PARTIAL_CANCELED
 
 Order Model
 ```javascript
@@ -74,7 +67,11 @@ General Response Model
 ```
 
 
+## Order API
+
 ### /order/create _[POST, Authentication]_
+
+Request
 
 ```javascript
 {  
@@ -218,7 +215,7 @@ Response
 
 ### /order/cancel-all _[POST, Authentication]_
 
-Request Body:
+Request:
 
 ```javascript
 {
@@ -229,6 +226,9 @@ Request Body:
   ]
 }
 ```
+
+  - selectedCounterParty: empty array will cancel all counterParties
+
 
 Response:
 
@@ -242,20 +242,73 @@ Response:
 }
 ```
 
-### /order/info _[POST, Authentication]_
+### /order/active _[GET, Authentication]_
 
-Request Body
+`Active Order Event`
+- EXECUTION_ACK
+- EXECUTION_PARTIAL_FILLED
+- EXECUTION_CANCELING
+
+Request Parameters
 - owner: 1234
-- type: active (optional, value=`active`, `filled`, `all`, default value=`all`)
+
+Response body (order by ORDER createTime)
+```javascript
+{
+  "success":true,
+  "errorCode":0,
+  "errorMsg":"ok",
+  "data":[
+    {
+      "streetOrderId":"1234567",
+      "orderType":"LIMIT",
+      "symbol":"BTC-USDT",
+      "side":"BID",
+      "owner":"2",
+      "counterParty":"binance",
+      "price":"0.00123",
+      "quantity":"10.000",
+      "filledPrice":"0.00",
+      "filledQuantity":"0.00",
+      "executionType":"EXECUTION_ACK",
+      "createTime":1530861306000,
+      "executionTime":1530861306000
+    },
+    {
+      "streetOrderId":"1345678",
+      "orderType":"LIMIT",
+      "symbol":"BTC-USDT",
+      "side":"ASK",
+      "owner":"2",
+      "counterParty":"huobi",
+      "price":"0.00123",
+      "quantity":"10.000",
+      "filledPrice":"0.00",
+      "filledQuantity":"0.00",
+      "executionType":"EXECUTION_PARTIAL_FILLED",
+      "createTime":1530861306000,
+      "executionTime":1530861306000
+    }
+  ]
+}
+```
+
+### /order/inactive _[GET, Authentication]_
+
+`Inactive Order:`
+- EXECUTION_FILLED
+- EXECUTION_CANCELED
+- EXECUTION_PARTIAL_CANCELED
+
+Request Parameters
+- owner: 1234
+- startTime: 1530861306000 (optional, default value= currentTimestamp - 24hour)
+- endTime: 1530861306000 (optional, default value= currentTimestamp)
 - pageIndex: 0 (optional, default value=`0`)
 - pageSize: 10 (optional, default value=`10`)
 
-Request Example:
-```
-/order/info?owner=1234&pageIndex=0&pageSize=20
-```
 
-Response body
+Response body (order by ORDER createTime)
 ```javascript
 {
   "success":true,
