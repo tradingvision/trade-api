@@ -28,7 +28,7 @@ Notice:
   - Request Example: subscribe depth price
     ```javascript
     {
-    "type":"SUB.DEPTH-PRICE",
+    "type":"SUB.DEPTH_PRICE",
     "seq":1,
     "data":[
         {
@@ -56,7 +56,7 @@ Notice:
   - Request Example: UnSubscribe depth price
     ```javascript
     {
-    "type":"UNSUB.DEPTH-PRICE",
+    "type":"UNSUB.DEPTH_PRICE",
     "seq":1,
     "data":[
         {
@@ -84,7 +84,7 @@ Notice:
 #### Sub request
 ```javascript
 {
-  "type":"SUB.DEPTH-PRICE",
+  "type":"SUB.DEPTH_PRICE",
   "seq":1,
   "data":[
     {
@@ -102,7 +102,7 @@ Notice:
 #### Depth price data
 ```javascript
 {
-  "type":"depthPrice",
+  "type":"DEPTH_PRICE",
   "data":{
     "counterParty":"binance",
     "symbol":"BTC-USDT",
@@ -159,7 +159,7 @@ Notice:
 #### Sub request
 ```javascript
 {
-  "type":"SUB.SIMPLE-PRICE",
+  "type":"SUB.SIMPLE_PRICE",
   "seq":1,
   "data":null
 }
@@ -168,7 +168,7 @@ Notice:
 #### Simple price data
 ```javascript
 {
-  "type":"simplePrice",
+  "type":"SIMPLE_PRICE",
   "data":[
     {
       "counterParty":"binance",
@@ -202,7 +202,7 @@ Notice:
 #### Sub request
 ```javascript
 {
-  "type":"SUB.MARKET-INFO",
+  "type":"SUB.MARKET_INFO",
   "seq":1,
   "data":null
 }
@@ -211,7 +211,7 @@ Notice:
 #### Market Info Data
 ```javascript
 {
-  "type":"marketInfo",
+  "type":"MARKET_INFO",
   "data":[
     {
       "counterParty":"binance",
@@ -251,7 +251,7 @@ Notice:
 
 ```javascript
 {
-  "type":"userOrder",
+  "type":"USER_ORDER",
   "data":{
     "status":"active",
     "order":{
@@ -280,7 +280,7 @@ Notice:
 
 ```javascript
 {
-  "type":"userOrder",
+  "type":"USER_ORDER",
   "data":{
     "status":"inactive",
     "order":{
