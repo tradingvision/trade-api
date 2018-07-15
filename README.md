@@ -10,7 +10,7 @@ JWT payload
 	
 ```javascript
 {
-	"uid": 2,			// user id
+	"uid": 2,		// user id
 	"iss": "ex",		// issuer (system)
 	"exp": 1517148660,	// JWT token expiry time
 	"group": "group1"	// user group
