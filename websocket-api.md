@@ -267,7 +267,7 @@ Notice:
       "filledQuantity":"0.00",
       "executionType":"EXECUTION_ACK",
       "createTime":1530861306000,
-      "executionTime":1530861306000
+      "processedTime":1530861306000
     }
   }
 }
@@ -296,7 +296,7 @@ Notice:
       "filledQuantity":"0.00",
       "executionType":"EXECUTION_FILLED",
       "createTime":1530861306000,
-      "executionTime":1530861306000
+      "processedTime":1530861306000
     }
   }
 }
