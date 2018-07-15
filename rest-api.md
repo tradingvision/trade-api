@@ -252,7 +252,7 @@ Response:
 Request Parameters
 - owner: 1234
 
-Response body (order by ORDER createTime)
+Response body (order by ORDER createTime DESC)
 ```javascript
 {
   "success":true,
@@ -308,7 +308,7 @@ Request Parameters
 - pageSize: 10 (optional, default value=`10`)
 
 
-Response body (order by ORDER createTime)
+Response body (order by ORDER createTime DESC)
 ```javascript
 {
   "success":true,
