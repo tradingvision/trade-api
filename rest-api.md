@@ -105,7 +105,7 @@ Response
     "filledQuantity":"0.00",
     "executionType":"EXECUTION_ACK",
     "createTime":1530861306000,
-    "executionTime":1530861306000
+    "processedTime":1530861306000
   }
 }
 ```
@@ -146,7 +146,7 @@ Response: successfully updated
     "filledQuantity":"0.00",
     "executionType":"EXECUTION_ACK",
     "createTime":1530861306000,
-    "executionTime":1530861306000
+    "processedTime":1530861306000
   }
 }
 ```
@@ -171,7 +171,7 @@ Response: failed to update
     "filledQuantity":"0.00",
     "executionType":"EXECUTION_PARTIAL_FILLED",
     "createTime":1530861306000,
-    "executionTime":1530861306000
+    "processedTime":1530861306000
   }
 }
 ```
@@ -208,7 +208,7 @@ Response
     "filledQuantity":"0.00",
     "executionType":"EXECUTION_CANCELED",
     "createTime":1530861306000,
-    "executionTime":1530861306000
+    "processedTime":1530861306000
   }
 }
 ```
@@ -272,7 +272,7 @@ Response body (order by ORDER createTime)
       "filledQuantity":"0.00",
       "executionType":"EXECUTION_ACK",
       "createTime":1530861306000,
-      "executionTime":1530861306000
+      "processedTime":1530861306000
     },
     {
       "streetOrderId":"1345678",
@@ -287,7 +287,7 @@ Response body (order by ORDER createTime)
       "filledQuantity":"0.00",
       "executionType":"EXECUTION_PARTIAL_FILLED",
       "createTime":1530861306000,
-      "executionTime":1530861306000
+      "processedTime":1530861306000
     }
   ]
 }
@@ -331,7 +331,7 @@ Response body (order by ORDER createTime)
         "filledQuantity":"0.00",
         "executionType":"EXECUTION_CANCELED",
         "createTime":1530861306000,
-        "executionTime":1530861306000
+        "processedTime":1530861306000
       },
       {
         "streetOrderId":"1345678",
@@ -346,7 +346,7 @@ Response body (order by ORDER createTime)
         "filledQuantity":"0.00",
         "executionType":"EXECUTION_FILLED",
         "createTime":1530861306000,
-        "executionTime":1530861306000
+        "processedTime":1530861306000
       }
     ]
   }
