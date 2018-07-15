@@ -316,7 +316,6 @@ Response body (order by ORDER createTime DESC)
   "errorMsg":"ok",
   "data":{
     "totalPage":10,
-    "hasNext":true,
     "content":[
       {
         "streetOrderId":"1234567",
