@@ -1,6 +1,6 @@
 
 ## Endpoint: 
-`https://api.coin-weight.com/v1`
+`https://api.coin-weight.com/exp/v2`
 
 ## Basic Models
 
