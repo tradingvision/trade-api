@@ -426,8 +426,53 @@ error response
 | 4 | Account duplication |
 | 5 | Verification code error ||
 
+### /user/{uid}/info _[GET, Authentication]_
 
-### /user/pwd/change _[POST, Authentication]_
+```javascript
+{
+  "success":true,
+  "errorCode":0,
+  "data":{
+    "uid":"123",
+    "googleAuthEnabled":false,
+    "group":"group1",
+    "userName":"test",
+    "email":"xxx@ggmail.com",
+    "avatar":"https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-512.png",
+    "estimatedValue":"10.0027 USDT",
+    "availableValue":"82.0000",
+    "netUnitValue":"10.0027 USDT",
+    "onOrders":"12.000",
+    "changePercentage":-0.0218
+  }
+}
+```
+
+### /user/{uid}/position _[GET, Authentication]_
+
+```javascript
+{
+  "success":true,
+  "errorCode":0,
+  "data":[
+    {
+      "counterParty":"binance",
+      "currency":"BTC",
+      "totalAmount":"1000.0",
+      "usedAmount":"12.001"
+    },
+    {
+      "counterParty":"binance",
+      "currency":"ETH",
+      "totalAmount":"400.0",
+      "usedAmount":"42.00"
+    }
+  ]
+}
+```
+
+
+### /user/pwd/change _[POST, Authentication]_ (Not Released)
 
 request
 
@@ -439,7 +484,7 @@ request
 }
 ```
 
-### /user/phone/verify _[POST, Authentication]_
+### /user/phone/verify _[POST, Authentication]_ (Not Released)
 request
 
 ```javascript
@@ -450,7 +495,7 @@ request
 }
 ```
 
-### /user/phone/bind _[POST, Authentication]_
+### /user/phone/bind _[POST, Authentication]_ (Not Released)
 
 request
 
@@ -463,7 +508,7 @@ request
 }
 ```
 
-### /user/totp/new _[POST, Authentication]_
+### /user/totp/new _[POST, Authentication]_ (Not Released)
 
 response
 
@@ -475,7 +520,7 @@ response
 }
 ```
 
-### /user/totp/bind _[POST, Authentication]_
+### /user/totp/bind _[POST, Authentication]_ (Not Released)
 
 response
 
