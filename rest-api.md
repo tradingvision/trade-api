@@ -479,13 +479,15 @@ error response
       "counterParty":"binance",
       "currency":"BTC",
       "totalAmount":"1000.0",
-      "usedAmount":"12.001"
+      "usedAmount":"12.001",
+      "availableAmount": "999"
     },
     {
       "counterParty":"binance",
       "currency":"ETH",
       "totalAmount":"400.0",
-      "usedAmount":"42.00"
+      "usedAmount":"42.00",
+      "availableAmount": "339"
     }
   ]
 }
