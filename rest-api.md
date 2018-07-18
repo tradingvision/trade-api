@@ -66,6 +66,26 @@ General Response Model
 }
 ```
 
+## Global API
+
+### /test-auth _[GET, Authentication]_
+Success Response
+```javascript
+{
+  "uid": 1,
+  "group": "group1"
+}
+```
+
+Error Response: `HTTP code 403`
+```javascript
+{
+  "success": false,
+  "errorCode": 403,
+  "errorMsg": "Authentication Failure",
+  "data": null
+}
+```
 
 ## Order API
 
