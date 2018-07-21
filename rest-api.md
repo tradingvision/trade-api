@@ -457,6 +457,7 @@ error response
     "googleAuthEnabled":false,
     "group":"group1",
     "userName":"test",
+    "phone":"135555555",
     "email":"xxx@ggmail.com",
     "avatar":"https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-512.png",
     "estimatedValue":"10.0027 USDT",
@@ -555,7 +556,7 @@ response
 
 ## API key & Secret key API
 
-### /secret/{owner} _[GET]_
+### /secret/{owner} _[GET, Authentication]_
 
 ok response
 
@@ -580,7 +581,7 @@ ok response
 | 0 | OK |
 | 500 | Unexpected Error (wrong owner) |
 
-### /secret/add _[POST]_
+### /secret/add _[POST, Authentication]_
 
 request
 ```javascript
@@ -610,7 +611,7 @@ ok response
 | 500 | Unexpected Error (wrong owner) |
 
 
-### /secret/delete _[POST]_
+### /secret/delete _[POST, Authentication]_
 
 request
 ```javascript
@@ -638,7 +639,7 @@ ok response
 
 ## Strategy API
 
-### /strategy/get [GET]
+### /strategy/get [GET, Authentication]
 
 ok response
 
@@ -679,7 +680,7 @@ ok response
 | 500 | Unexpected Error (wrong owner) |
 
 
-### /strategy/update _[POST]_
+### /strategy/update _[POST, Authentication]_
 
 request
 
