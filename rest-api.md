@@ -191,7 +191,7 @@ Response Body
     {
       "counterParty":"huobi",
       "symbol":"EOS-USDT",
-      “favorite”: false
+      “favorite”: true
     }
   ]
 }
