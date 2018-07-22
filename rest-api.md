@@ -151,8 +151,8 @@ Response Body
 Request Body
 ```javascript
 {
-	"counterParty": "binance",
-	"symbol": "ETH-BTC"
+  "counterParty": "binance",
+  "symbol": "ETH-BTC"
 }
 ```
 
@@ -170,8 +170,8 @@ Response Body
 Request Body
 ```javascript
 {
-	"counterParty": "binance",
-	"symbol": "ETH-BTC"
+  "counterParty": "binance",
+  "symbol": "ETH-BTC"
 }
 ```
 
