@@ -99,7 +99,7 @@ Response Body
   "errorMsg":"ok",
   "data":[
     {
-      "cunrrency":"BTC",
+      "category":"BTC", // tab name
       "items":[
         {
           "counterParty":"binance",
@@ -112,7 +112,7 @@ Response Body
       ]
     },
     {
-      "cunrrency":"ETH",
+      "category":"ETH",
       "items":[
         {
           "counterParty":"binance",
