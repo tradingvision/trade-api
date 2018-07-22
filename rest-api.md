@@ -184,6 +184,161 @@ Response Body
   "data": null
 }
 ```
+### /config/layout/professional/default _[GET]_
+Response Body
+```javascript
+{
+  "success":true,
+  "errorCode":0,
+  "errorMsg":"ok",
+  "data":[
+    {
+      "position":1,
+      "counterParty":"binance",
+      "symbol":"ETH-BTC"
+    },
+    {
+      "position":2,
+      "counterParty":"huobi",
+      "symbol":"EOS-USDT"
+    },
+    {
+      "position":3,
+      "counterParty":"okcoin",
+      "symbol":"EOS-USDT"
+    }
+  ]
+}
+```
+
+### /config/layout/professional/custom/{uid} _[GET, Authentication]_
+Response Body
+```javascript
+{
+  "success":true,
+  "errorCode":0,
+  "errorMsg":"ok",
+  "data":[
+    {
+      "position":1,
+      "counterParty":"binance",
+      "symbol":"ETH-BTC"
+    },
+    {
+      "position":2,
+      "counterParty":"huobi",
+      "symbol":"EOS-USDT"
+    },
+    {
+      "position":3,
+      "counterParty":"okcoin",
+      "symbol":"EOS-USDT"
+    }
+  ]
+}
+```
+
+### /config/layout/professional/custom/{uid}/update _[POST, Authentication]_
+Request Body
+```javascript
+{
+  "position":1,
+  "counterParty":"binance",
+  "symbol":"EOS-USDT"
+}
+```
+
+Response Body
+```javascript
+{
+  "success":true,
+  "errorCode":0,
+  "errorMsg":"ok",
+  "data":null
+}
+```
+
+### /config/layout/simple/default _[GET]_
+Response Body
+```javascript
+{
+  "success":true,
+  "errorCode":0,
+  "errorMsg":"ok",
+  "data":[
+    {
+      "position":1,
+      "counterParty":"binance",
+      "symbol":"ETH-BTC"
+    },
+    {
+      "position":2,
+      "counterParty":"huobi",
+      "symbol":"EOS-USDT"
+    },
+    
+    // .....
+    
+    {
+      "position":12,
+      "counterParty":"okcoin",
+      "symbol":"EOS-USDT"
+    }
+  ]
+}
+```
+
+### /config/layout/simple/custom/{uid} _[GET, Authentication]_
+Response Body
+```javascript
+{
+  "success":true,
+  "errorCode":0,
+  "errorMsg":"ok",
+  "data":[
+    {
+      "position":1,
+      "counterParty":"binance",
+      "symbol":"ETH-BTC"
+    },
+    {
+      "position":2,
+      "counterParty":"huobi",
+      "symbol":"EOS-USDT"
+    },
+    
+    // ...
+    
+    {
+      "position":12,
+      "counterParty":"okcoin",
+      "symbol":"EOS-USDT"
+    }
+  ]
+}
+```
+
+### /config/layout/simple/custom/{uid}/update _[POST, Authentication]_
+Request Body
+```javascript
+{
+  "position":1,
+  "counterParty":"binance",
+  "symbol":"EOS-USDT"
+}
+```
+
+Response Body
+```javascript
+{
+  "success":true,
+  "errorCode":0,
+  "errorMsg":"ok",
+  "data":null
+}
+```
+
+
 
 ## Order API
 
