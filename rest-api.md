@@ -87,6 +87,104 @@ Error Response: `HTTP code 403`
 }
 ```
 
+## Config API
+
+### /config/market/default _[GET]_
+
+Response Body
+```
+{
+  "success":true,
+  "errorCode":0,
+  "errorMsg":"ok",
+  "data":[
+    {
+      "cunrrency":"BTC",
+      "items":[
+        {
+          "counterParty":"binance",
+          "symbol":"ETH-BTC"
+        },
+        {
+          "counterParty":"huobi",
+          "symbol":"ETH-BTC"
+        }
+      ]
+    },
+    {
+      "cunrrency":"ETH",
+      "items":[
+        {
+          "counterParty":"binance",
+          "symbol":"EOS-ETH"
+        },
+        {
+          "counterParty":"huobi",
+          "symbol":"EOS-ETH"
+        }
+      ]
+    }
+  ]
+}
+```
+### /config/market/favorite/{uid} _[GET, Authentication]_
+Response Body
+```javascript
+{
+  "success":true,
+  "errorCode":0,
+  "errorMsg":"ok",
+  "data":[
+    {
+      "counterParty":"binance",
+      "symbol":"ETH-BTC"
+    },
+    {
+      "counterParty":"huobi",
+      "symbol":"EOS-USDT"
+    }
+  ]
+}
+```
+
+### /config/market/favorite/{uid}/add _[POST, Authentication]_
+Request Body
+```javascript
+{
+	"counterParty": "binance",
+	"symbol": "ETH-BTC"
+}
+```
+
+Response Body
+```javascript
+{
+  "success":true,
+  "errorCode":0,
+  "errorMsg":"ok",
+  "data": null
+}
+```
+
+### /config/market/favorite/{uid}/delete _[POST, Authentication]_
+Request Body
+```javascript
+{
+	"counterParty": "binance",
+	"symbol": "ETH-BTC"
+}
+```
+
+Response Body
+```javascript
+{
+  "success":true,
+  "errorCode":0,
+  "errorMsg":"ok",
+  "data": null
+}
+```
+
 ## Order API
 
 ### /order/create _[POST, Authentication]_
