@@ -103,11 +103,13 @@ Response Body
       "items":[
         {
           "counterParty":"binance",
-          "symbol":"ETH-BTC"
+          "symbol":"ETH-BTC",
+          “favorite”: false
         },
         {
           "counterParty":"huobi",
-          "symbol":"ETH-BTC"
+          "symbol":"ETH-BTC",
+          “favorite”: false
         }
       ]
     },
@@ -116,18 +118,64 @@ Response Body
       "items":[
         {
           "counterParty":"binance",
-          "symbol":"EOS-ETH"
+          "symbol":"EOS-ETH",
+          “favorite”: false
         },
         {
           "counterParty":"huobi",
-          "symbol":"EOS-ETH"
+          "symbol":"EOS-ETH",
+          “favorite”: false
         }
       ]
     }
   ]
 }
 ```
-### /config/market/favorite/{uid} _[GET, Authentication]_
+
+### /config/market/custom/{uid} _[GET, Authentication]_
+
+Response Body
+```
+{
+  "success":true,
+  "errorCode":0,
+  "errorMsg":"ok",
+  "data":[
+    {
+      "category":"BTC", // tab name
+      "items":[
+        {
+          "counterParty":"binance",
+          "symbol":"ETH-BTC",
+          “favorite”: true
+        },
+        {
+          "counterParty":"huobi",
+          "symbol":"ETH-BTC",
+          “favorite”: false
+        }
+      ]
+    },
+    {
+      "category":"ETH",
+      "items":[
+        {
+          "counterParty":"binance",
+          "symbol":"EOS-ETH",
+          “favorite”: false
+        },
+        {
+          "counterParty":"huobi",
+          "symbol":"EOS-ETH",
+          “favorite”: true
+        }
+      ]
+    }
+  ]
+}
+```
+
+### /config/market/custom/{uid}/favorite _[GET, Authentication]_
 Response Body
 ```javascript
 {
@@ -137,17 +185,19 @@ Response Body
   "data":[
     {
       "counterParty":"binance",
-      "symbol":"ETH-BTC"
+      "symbol":"ETH-BTC"，
+      “favorite”: true
     },
     {
       "counterParty":"huobi",
-      "symbol":"EOS-USDT"
+      "symbol":"EOS-USDT",
+      “favorite”: false
     }
   ]
 }
 ```
 
-### /config/market/favorite/{uid}/add _[POST, Authentication]_
+### /config/market/custom/{uid}/favorite/add _[POST, Authentication]_
 Request Body
 ```javascript
 {
@@ -166,7 +216,7 @@ Response Body
 }
 ```
 
-### /config/market/favorite/{uid}/delete _[POST, Authentication]_
+### /config/market/custom/{uid}/favorite/delete _[POST, Authentication]_
 Request Body
 ```javascript
 {
