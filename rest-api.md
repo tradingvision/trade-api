@@ -104,10 +104,10 @@ Error Response: `HTTP code 403`
           "name":"ETH-USDT", // symbol name
           "base":"ETH",
           "quote":"USDT",
-          "priceDecimal":2, // 0.01
-          "quantityDecimal":4, // 0.0001
-          "quantityMin":0.001,
-          "quantityMax":10000.0
+          "priceDecimal":2, // when create order, price precision at most 0.01
+          "quantityDecimal":4, // when create order, quantity precision at most 0.0001
+          "quantityMin":0.001, // when create order, minimum quantity 0.001
+          "quantityMax":10000.0 // when create order, maximum quantity 10000.0
         }
       ]
     },
