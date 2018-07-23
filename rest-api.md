@@ -89,10 +89,50 @@ Error Response: `HTTP code 403`
 
 ## Config API
 
+### /config/symbols _[GET]_
+
+```javascript
+{
+  "success":true,
+  "errorCode":0,
+  "errorMsg":"ok",
+  "data":[
+    {
+      "counterParty":"huobi",
+      "symbols":[
+        {
+          "name":"ETH-USDT", // symbol name
+          "base":"ETH",
+          "quote":"USDT",
+          "priceDecimal":2, // 0.01
+          "quantityDecimal":4, // 0.0001
+          "quantityMin":0.001,
+          "quantityMax":10000.0
+        }
+      ]
+    },
+    {
+      "counterParty":"binance",
+      "symbols":[
+        {
+          "name":"ETH-USDT",
+          "base":"ETH",
+          "quote":"USDT",
+          "priceDecimal":2,
+          "quantityDecimal":4,
+          "quantityMin":0.001,
+          "quantityMax":10000.0
+        }
+      ]
+    }
+  ]
+}
+```
+
 ### /config/market/default _[GET]_
 
 Response Body
-```
+```javascript
 {
   "success":true,
   "errorCode":0,
@@ -135,7 +175,7 @@ Response Body
 ### /config/market/custom/{uid} _[GET, Authentication]_
 
 Response Body
-```
+```javascript
 {
   "success":true,
   "errorCode":0,
@@ -234,6 +274,7 @@ Response Body
   "data": null
 }
 ```
+
 ### /config/layout/professional/default _[GET]_
 Response Body
 ```javascript
@@ -699,6 +740,7 @@ Response
     "uid": 2,
     "userName": "abc",
     "group": "group1",
+    "email": "abc@gmail.com",
     "authToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjIsImlzcyI6ImV4IiwiZXhwIjoxNTE3MTQ4NjYwLCJncm91cCI6Imdyb3VwMSJ9.YrYttRaGcFWro6WFsGkm3arnSQXyF1ZOWfT2-Uve6tI"
   }
 }
@@ -720,7 +762,8 @@ request
 {
   "email": "abc@gmail.com",
   "phone": "12345",
-  "userName": "abc"
+  "userName": "abc",
+  "password": "pwd123"
 }
 ```
 ok response
