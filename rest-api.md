@@ -9,8 +9,8 @@ orderType:
 - MARKET
 
 side:
-- BID
-- ASK
+- BID  (BUY)
+- ASK  (SELL)
 
 executionType:
 - EXECUTION_REJECTED
