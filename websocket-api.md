@@ -253,7 +253,7 @@ Notice:
 {
   "type":"USER_ORDER",
   "data":{
-    "status":"active",
+    "status":"ACTIVE",
     "order":{
       "streetOrderId":"1234567",
       "orderType":"LIMIT",
@@ -282,7 +282,7 @@ Notice:
 {
   "type":"USER_ORDER",
   "data":{
-    "status":"inactive",
+    "status":"INACTIVE",
     "order":{
       "streetOrderId":"1234567",
       "orderType":"LIMIT",
