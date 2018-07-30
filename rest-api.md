@@ -256,6 +256,83 @@ Response Body
 }
 ```
 
+### /config/strategy/{uid}/type _[get]_
+
+Response Body
+```javascript
+{
+  "success":true,
+  "errorCode":0,
+  "errorMsg":"ok",
+  "data": [    
+    {
+      "name": "SingleMarketMaker",
+      "default": {
+        "name": "octmm",
+        "exchange": "binance",
+        "strategyType": "SingleMarketMaker",
+        "owner": "strategy-11",
+        "symbols": [{
+            "name": "test",
+            "symbol": "ETH-BTC",
+            "side": "Both",
+            "currency1": "ETH",
+            "margin1": 0.1,
+            "currency2": "BTC",
+            "margin2": 0.01,
+            "orderNumber": 1,
+            "spreadPct": 0.04,
+            "orderQty": 0.1,
+            "qtyVar": 0.0,
+            "priceStep": 0.0001,
+            "priceVar": 0.0,
+            "middlePrice": 0,
+            "replaceDelay": 1.0,
+            "middlePriceStep": 0.0001,
+            "toleranceVar": 0.001
+          }
+        ]
+      }
+    },
+    {
+      "name": "arbitrage".
+      "default": {
+	      "name": "octmm",
+        "strategyType": "Arbitrage",
+        "owner": "strategy-11",
+        "exchange": "binance",
+        "symbols": [{
+          "name": "test",
+          "symbol": "ETH-BTC",
+          "expiredSeconds": 2,
+          "margins": [{
+            "currency1": "ETH",
+            "margin1": 0.1,
+            "currency2": "BTC",
+            "margin2": 0.01,
+            "counterParty": "binance"
+          }, {
+            "currency1": "ETH",
+            "margin1": 0.1,
+            "currency2": "BTC",
+            "margin2": 0.01,
+            "counterParty": "bigone"
+          }],
+          "exchange1": "binance",
+          "exchange2": "bigone",
+          "buySpread": -0.001,
+          "sellSpread": 0.001,
+          "maxOrderQty": 0.1
+        }]
+      }
+
+
+    }
+  ]
+}
+```
+
+
 ### /config/market/custom/{uid}/favorite/delete _[POST, Authentication]_
 Request Body
 ```javascript
