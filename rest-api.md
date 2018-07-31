@@ -256,7 +256,7 @@ Response Body
 }
 ```
 
-### /config/strategy/default/types _[get]_
+### /config/strategy/default/items _[get]_
 
 #### full list of strategy types list can refer [REST API document](strategy.md)
 
@@ -321,9 +321,9 @@ Response Body
 }
 ```
 
-### /config/strategy/custom/{uid}/types _[GET, Authentication]_
+### /config/strategy/custom/{uid}/items _[GET, Authentication]_
 
-#### list of strategy types list can refer [REST API document](strategy.md)
+#### list of strategy items list can refer [REST API document](strategy.md)
 
 Response Body
 ```javascript
