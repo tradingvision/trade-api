@@ -1389,3 +1389,35 @@ ok response
 |:---:|---|
 | 0 | OK |
 | 500 | Unexpected Error (wrong owner) |
+
+
+### /strategy/status _[POST, Authentication]_
+
+request
+
+```javascript
+{
+  "userid": "123"
+}
+```
+
+ok response
+
+```javascript
+{
+  "success": true,
+  "seq_no": 0,
+  "error_code": 0,
+  "data": {
+    "status": {
+      "1": "running",
+      "2": "stopped" 
+    }
+  }
+}
+```
+
+| error_code | reason |
+|:---:|---|
+| 0 | OK |
+| 500 | Unexpected Error (wrong owner) |
