@@ -256,7 +256,9 @@ Response Body
 }
 ```
 
-### /config/strategy/{uid}/type _[get]_
+### /config/strategy/default/types _[get]_
+
+#### full list of strategy types list can refer [REST API document](strategy.md)
 
 Response Body
 ```javascript
@@ -264,7 +266,28 @@ Response Body
   "success":true,
   "errorCode":0,
   "errorMsg":"ok",
-  "data": [    
+  "data": [   
+    {
+      "name": "octmm",
+      "exchange": "binance",
+      "owner": "strategy-10",
+      "strategyType": "VolumeMarketMaker",
+      "symbols": [{
+          "name": "test",
+          "symbol": "ETH-BTC",
+          "currency1": "ETH",
+          "margin1": 0.2,
+          "currency2": "BTC",
+          "margin2": 0.02,
+          "orderQty": 0.1,
+          "qtyVar": 0.0,
+          "priceVar": 0.0,
+          "middlePrice": 0,
+          "replaceDelay": 60.0,
+          "delayVar": 10
+        }
+      ]
+    }, 
     {
       "name": "SingleMarketMaker",
       "default": {
@@ -293,45 +316,208 @@ Response Body
           }
         ]
       }
-    },
-    {
-      "name": "arbitrage".
-      "default": {
-	      "name": "octmm",
-        "strategyType": "Arbitrage",
-        "owner": "strategy-11",
-        "exchange": "binance",
-        "symbols": [{
-          "name": "test",
-          "symbol": "ETH-BTC",
-          "expiredSeconds": 2,
-          "margins": [{
-            "currency1": "ETH",
-            "margin1": 0.1,
-            "currency2": "BTC",
-            "margin2": 0.01,
-            "counterParty": "binance"
-          }, {
-            "currency1": "ETH",
-            "margin1": 0.1,
-            "currency2": "BTC",
-            "margin2": 0.01,
-            "counterParty": "bigone"
-          }],
-          "exchange1": "binance",
-          "exchange2": "bigone",
-          "buySpread": -0.001,
-          "sellSpread": 0.001,
-          "maxOrderQty": 0.1
-        }]
-      }
-
-
     }
   ]
 }
 ```
 
+### /config/strategy/custom/{uid}/types _[GET, Authentication]_
+
+#### list of strategy types list can refer [REST API document](strategy.md)
+
+Response Body
+```javascript
+{
+  "success":true,
+  "errorCode":0,
+  "errorMsg":"ok",
+  "data":  {
+    "1": {
+      'name': 'octmm',
+      'exchange': 'binance',
+      'strategyType': 'SingleMarketMaker',
+      'symbols': [{
+        'name': 'OCT-ETH',
+        'currency': 'ETH',
+        'strategy': 'octmm',
+        'margin': 0.1,
+        'orderNumber': 10,
+        'spreadPct': 0.03,
+        'orderQty': 10,
+        'qtyVar': 0.01,
+        'priceStep': 0.0001,
+        'priceVar': 0.0001
+      }, {
+        'name': 'OCT-BTC',
+        'currency': 'BTC',
+        'strategy': 'octmm',
+        'margin': 0.01,
+        'orderNumber': 10,
+        'spreadPct': 0.03,
+        'orderQty': 10,
+        'qtyVar': 0.01,
+        'priceStep': 0.0001,
+        'priceVar': 0.0001
+      }]
+    }}
+}
+```
+
+### /config/strategy/custom/{uid}/item/update _[POST, Authentication]_
+Request Body
+```javascript
+{
+  "1" : {
+    "name": "octmm",
+    "exchange": "binance",
+    "owner": "strategy-10",
+    "strategyType": "VolumeMarketMaker",
+    "symbols": [{
+        "name": "test",
+        "symbol": "ETH-BTC",
+        "currency1": "ETH",
+        "margin1": 0.2,
+        "currency2": "BTC",
+        "margin2": 0.02,
+        "orderQty": 0.1,
+        "qtyVar": 0.0,
+        "priceVar": 0.0,
+        "middlePrice": 0,
+        "replaceDelay": 60.0,
+        "delayVar": 10
+      }
+    ]
+  }
+}
+```
+Response Body
+```javascript
+{
+  "success":true,
+  "errorCode":0,
+  "errorMsg":"ok",
+  "data":  { 
+    "1" : {
+      "name": "octmm",
+      "exchange": "binance",
+      "owner": "strategy-10",
+      "strategyType": "VolumeMarketMaker",
+      "symbols": [{
+          "name": "test",
+          "symbol": "ETH-BTC",
+          "currency1": "ETH",
+          "margin1": 0.2,
+          "currency2": "BTC",
+          "margin2": 0.02,
+          "orderQty": 0.1,
+          "qtyVar": 0.0,
+          "priceVar": 0.0,
+          "middlePrice": 0,
+          "replaceDelay": 60.0,
+          "delayVar": 10
+        }
+      ]
+    }
+  }
+}
+```
+
+### /config/strategy/custom/{uid}/item/create _[POST, Authentication]_
+Request Body
+```javascript
+{
+    "name": "octmm",
+    "exchange": "binance",
+    "owner": "strategy-10",
+    "strategyType": "VolumeMarketMaker",
+    "symbols": [{
+        "name": "test",
+        "symbol": "ETH-BTC",
+        "currency1": "ETH",
+        "margin1": 0.2,
+        "currency2": "BTC",
+        "margin2": 0.02,
+        "orderQty": 0.1,
+        "qtyVar": 0.0,
+        "priceVar": 0.0,
+        "middlePrice": 0,
+        "replaceDelay": 60.0,
+        "delayVar": 10
+      }
+    ]
+}
+```
+Response Body
+```javascript
+{
+  "success":true,
+  "errorCode":0,
+  "errorMsg":"ok",
+  "data":  { 
+    "1" : {
+      "name": "octmm",
+      "exchange": "binance",
+      "owner": "strategy-10",
+      "strategyType": "VolumeMarketMaker",
+      "symbols": [{
+          "name": "test",
+          "symbol": "ETH-BTC",
+          "currency1": "ETH",
+          "margin1": 0.2,
+          "currency2": "BTC",
+          "margin2": 0.02,
+          "orderQty": 0.1,
+          "qtyVar": 0.0,
+          "priceVar": 0.0,
+          "middlePrice": 0,
+          "replaceDelay": 60.0,
+          "delayVar": 10
+        }
+      ]
+    }
+  }
+}
+```
+
+
+### /config/strategy/custom/{uid}/item/delete _[POST, Authentication]_
+Request Body
+```javascript
+{
+  "id": "1"
+}
+```
+Response Body
+```javascript
+{
+  "success":true,
+  "errorCode":0,
+  "errorMsg":"ok",
+  "data": {
+    "1": {
+      "name": "octmm",
+      "exchange": "binance",
+      "owner": "strategy-10",
+      "strategyType": "VolumeMarketMaker",
+      "symbols": [{
+          "name": "test",
+          "symbol": "ETH-BTC",
+          "currency1": "ETH",
+          "margin1": 0.2,
+          "currency2": "BTC",
+          "margin2": 0.02,
+          "orderQty": 0.1,
+          "qtyVar": 0.0,
+          "priceVar": 0.0,
+          "middlePrice": 0,
+          "replaceDelay": 60.0,
+          "delayVar": 10
+        }
+      ]
+    }
+  }
+}
+```
 
 ### /config/market/custom/{uid}/favorite/delete _[POST, Authentication]_
 Request Body
@@ -1062,12 +1248,14 @@ ok response
 
 ## Strategy API
 
-### /strategy/get [GET, Authentication]
+### /strategy/start [POST, Authentication]
 
-ok response
+request
 
 ```javascript
-{"1": {
+{
+  "userid": "123",
+  "strategy": {"1": {
       'name': 'octmm',
       'exchange': 'binance',
       'strategyType': 'SingleMarketMaker',
@@ -1095,6 +1283,21 @@ ok response
         'priceVar': 0.0001
       }]
     }}
+}
+```
+
+ok response
+```javascript
+{
+  "success": true,
+  "seq_no": 0,
+  "error_code": 0,
+  "data": {
+    "strategy": {
+      "1": true
+    }
+  }
+}
 ```
 
 | error_code | reason |
@@ -1103,9 +1306,10 @@ ok response
 | 500 | Unexpected Error (wrong owner) |
 
 
-### /strategy/update _[POST, Authentication]_
+### /strategy/stop _[POST, Authentication]_
 
 request
+
 
 ```javascript
 {
@@ -1180,7 +1384,6 @@ ok response
   }
 }
 ```
-
 
 | error_code | reason |
 |:---:|---|
