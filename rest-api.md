@@ -268,25 +268,28 @@ Response Body
   "errorMsg":"ok",
   "data": [   
     {
-      "name": "octmm",
-      "exchange": "binance",
-      "owner": "strategy-10",
-      "strategyType": "VolumeMarketMaker",
-      "symbols": [{
-          "name": "test",
-          "symbol": "ETH-BTC",
-          "currency1": "ETH",
-          "margin1": 0.2,
-          "currency2": "BTC",
-          "margin2": 0.02,
-          "orderQty": 0.1,
-          "qtyVar": 0.0,
-          "priceVar": 0.0,
-          "middlePrice": 0,
-          "replaceDelay": 60.0,
-          "delayVar": 10
-        }
-      ]
+      "name": "VolumeMarketMaker",
+      "default": {
+        "name": "octmm",
+        "exchange": "binance",
+        "owner": "strategy-10",
+        "strategyType": "VolumeMarketMaker",
+        "symbols": [{
+            "name": "test",
+            "symbol": "ETH-BTC",
+            "currency1": "ETH",
+            "margin1": 0.2,
+            "currency2": "BTC",
+            "margin2": 0.02,
+            "orderQty": 0.1,
+            "qtyVar": 0.0,
+            "priceVar": 0.0,
+            "middlePrice": 0,
+            "replaceDelay": 60.0,
+            "delayVar": 10
+          }
+        ]
+      }
     }, 
     {
       "name": "SingleMarketMaker",
@@ -331,8 +334,9 @@ Response Body
   "success":true,
   "errorCode":0,
   "errorMsg":"ok",
-  "data":  {
-    "1": {
+  "data": [
+    {
+      'id': "1",
       'name': 'octmm',
       'exchange': 'binance',
       'strategyType': 'SingleMarketMaker',
@@ -359,7 +363,8 @@ Response Body
         'priceStep': 0.0001,
         'priceVar': 0.0001
       }]
-    }}
+    }
+  ]
 }
 ```
 
@@ -367,7 +372,36 @@ Response Body
 Request Body
 ```javascript
 {
-  "1" : {
+  "id": "1",
+  "name": "octmm",
+  "exchange": "binance",
+  "owner": "strategy-10",
+  "strategyType": "VolumeMarketMaker",
+  "symbols": [{
+      "name": "test",
+      "symbol": "ETH-BTC",
+      "currency1": "ETH",
+      "margin1": 0.2,
+      "currency2": "BTC",
+      "margin2": 0.02,
+      "orderQty": 0.1,
+      "qtyVar": 0.0,
+      "priceVar": 0.0,
+      "middlePrice": 0,
+      "replaceDelay": 60.0,
+      "delayVar": 10
+    }
+  ]
+}
+```
+Response Body
+```javascript
+{
+  "success":true,
+  "errorCode":0,
+  "errorMsg":"ok",
+  "data":  { 
+    "id": "1",
     "name": "octmm",
     "exchange": "binance",
     "owner": "strategy-10",
@@ -387,37 +421,6 @@ Request Body
         "delayVar": 10
       }
     ]
-  }
-}
-```
-Response Body
-```javascript
-{
-  "success":true,
-  "errorCode":0,
-  "errorMsg":"ok",
-  "data":  { 
-    "1" : {
-      "name": "octmm",
-      "exchange": "binance",
-      "owner": "strategy-10",
-      "strategyType": "VolumeMarketMaker",
-      "symbols": [{
-          "name": "test",
-          "symbol": "ETH-BTC",
-          "currency1": "ETH",
-          "margin1": 0.2,
-          "currency2": "BTC",
-          "margin2": 0.02,
-          "orderQty": 0.1,
-          "qtyVar": 0.0,
-          "priceVar": 0.0,
-          "middlePrice": 0,
-          "replaceDelay": 60.0,
-          "delayVar": 10
-        }
-      ]
-    }
   }
 }
 ```
@@ -1255,7 +1258,8 @@ request
 ```javascript
 {
   "userid": "123",
-  "strategy": {"1": {
+  "strategy": {
+      "id": "1",
       'name': 'octmm',
       'exchange': 'binance',
       'strategyType': 'SingleMarketMaker',
@@ -1282,7 +1286,7 @@ request
         'priceStep': 0.0001,
         'priceVar': 0.0001
       }]
-    }}
+    }
 }
 ```
 
@@ -1294,7 +1298,8 @@ ok response
   "error_code": 0,
   "data": {
     "strategy": {
-      "1": true
+      "id": "1",
+      "status": "running"
     }
   }
 }
@@ -1305,6 +1310,8 @@ ok response
 | 0 | OK |
 | 500 | Unexpected Error (wrong owner) |
 
+
+## stop strategy
 
 ### /strategy/stop _[POST, Authentication]_
 
@@ -1314,34 +1321,36 @@ request
 ```javascript
 {
   "userid": "123",
-  "strategy": {"1": {
-      'name': 'octmm',
-      'exchange': 'binance',
-      'strategyType': 'SingleMarketMaker',
-      'symbols': [{
-        'name': 'OCT-ETH',
-        'currency': 'ETH',
-        'strategy': 'octmm',
-        'margin': 0.1,
-        'orderNumber': 10,
-        'spreadPct': 0.03,
-        'orderQty': 10,
-        'qtyVar': 0.01,
-        'priceStep': 0.0001,
-        'priceVar': 0.0001
-      }, {
-        'name': 'OCT-BTC',
-        'currency': 'BTC',
-        'strategy': 'octmm',
-        'margin': 0.01,
-        'orderNumber': 10,
-        'spreadPct': 0.03,
-        'orderQty': 10,
-        'qtyVar': 0.01,
-        'priceStep': 0.0001,
-        'priceVar': 0.0001
-      }]
-    }}
+  "strategy": { 
+    "id":  "1", 
+    "bCancel": true,
+    'name': 'octmm',
+    'exchange': 'binance',
+    'strategyType': 'SingleMarketMaker',
+    'symbols': [{
+      'name': 'OCT-ETH',
+      'currency': 'ETH',
+      'strategy': 'octmm',
+      'margin': 0.1,
+      'orderNumber': 10,
+      'spreadPct': 0.03,
+      'orderQty': 10,
+      'qtyVar': 0.01,
+      'priceStep': 0.0001,
+      'priceVar': 0.0001
+    }, {
+      'name': 'OCT-BTC',
+      'currency': 'BTC',
+      'strategy': 'octmm',
+      'margin': 0.01,
+      'orderNumber': 10,
+      'spreadPct': 0.03,
+      'orderQty': 10,
+      'qtyVar': 0.01,
+      'priceStep': 0.0001,
+      'priceVar': 0.0001
+    }]
+  }
 }
 ```
 
@@ -1353,34 +1362,73 @@ ok response
   "seq_no": 0,
   "error_code": 0,
   "data": {
-    "strategy": {"1": {
-      'name': 'octmm',
-      'exchange': 'binance',
-      'strategyType': 'SingleMarketMaker',
-      'symbols': [{
-        'name': 'OCT-ETH',
-        'currency': 'ETH',
-        'strategy': 'octmm',
-        'margin': 0.1,
-        'orderNumber': 10,
-        'spreadPct': 0.03,
-        'orderQty': 10,
-        'qtyVar': 0.01,
-        'priceStep': 0.0001,
-        'priceVar': 0.0001
-      }, {
-        'name': 'OCT-BTC',
-        'currency': 'BTC',
-        'strategy': 'octmm',
-        'margin': 0.01,
-        'orderNumber': 10,
-        'spreadPct': 0.03,
-        'orderQty': 10,
-        'qtyVar': 0.01,
-        'priceStep': 0.0001,
-        'priceVar': 0.0001
-      }]
-    }}
+    "strategy": { 
+      "id":  "1"，
+      'status': "stopped"
+    }
+  }
+}
+```
+
+| error_code | reason |
+|:---:|---|
+| 0 | OK |
+| 500 | Unexpected Error (wrong owner) |
+
+## leave strategy
+### /strategy/stop _[POST, Authentication]_
+
+request
+
+
+```javascript
+{
+  "userid": "123",
+  "strategy": { 
+    "id":  "1", 
+    "bCancel": false,
+    'name': 'octmm',
+    'exchange': 'binance',
+    'strategyType': 'SingleMarketMaker',
+    'symbols': [{
+      'name': 'OCT-ETH',
+      'currency': 'ETH',
+      'strategy': 'octmm',
+      'margin': 0.1,
+      'orderNumber': 10,
+      'spreadPct': 0.03,
+      'orderQty': 10,
+      'qtyVar': 0.01,
+      'priceStep': 0.0001,
+      'priceVar': 0.0001
+    }, {
+      'name': 'OCT-BTC',
+      'currency': 'BTC',
+      'strategy': 'octmm',
+      'margin': 0.01,
+      'orderNumber': 10,
+      'spreadPct': 0.03,
+      'orderQty': 10,
+      'qtyVar': 0.01,
+      'priceStep': 0.0001,
+      'priceVar': 0.0001
+    }]
+  }
+}
+```
+
+ok response
+
+```javascript
+{
+  "success": true,
+  "seq_no": 0,
+  "error_code": 0,
+  "data": {
+    "strategy": { 
+      "id":  "1"，
+      'status': "stopped"
+    }
   }
 }
 ```
@@ -1391,15 +1439,8 @@ ok response
 | 500 | Unexpected Error (wrong owner) |
 
 
-### /strategy/status _[POST, Authentication]_
+### /strategy/status/{uid} _[GET, Authentication]_
 
-request
-
-```javascript
-{
-  "userid": "123"
-}
-```
 
 ok response
 
@@ -1409,10 +1450,16 @@ ok response
   "seq_no": 0,
   "error_code": 0,
   "data": {
-    "status": {
-      "1": "running",
-      "2": "stopped" 
-    }
+    "status": [
+      {
+        "id": "1",
+        "status": "running"
+      },
+      {
+        "id": "2",
+        "status": "stopped"
+      }
+    ]
   }
 }
 ```
