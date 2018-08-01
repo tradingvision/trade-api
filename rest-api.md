@@ -1375,6 +1375,7 @@ ok response
 | 0 | OK |
 | 500 | Unexpected Error (wrong owner) |
 
+<<<<<<< HEAD
 ## leave strategy
 ### /strategy/stop _[POST, Authentication]_
 
@@ -1413,22 +1414,6 @@ request
       'priceStep': 0.0001,
       'priceVar': 0.0001
     }]
-  }
-}
-```
-
-ok response
-
-```javascript
-{
-  "success": true,
-  "seq_no": 0,
-  "error_code": 0,
-  "data": {
-    "strategy": { 
-      "id":  "1"，
-      'status': "stopped"
-    }
   }
 }
 ```
