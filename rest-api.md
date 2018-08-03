@@ -334,7 +334,7 @@ Response Body
   "errorMsg":"ok",
   "data": {
     "strategyType": ["SingleMarketMaker, VolumeMaker, ArbitrageQuote, SpeedOrder"],
-    "side": ["Bid", "Ask"],
+    "side": ["Bid", "Ask", "Both"],
     "symbol": [
       {
         "counterParty": "binance",
