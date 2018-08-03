@@ -324,6 +324,30 @@ Response Body
 }
 ```
 
+
+### /config/strategy/options _[GET]_
+Response Body
+```javascript
+{
+  "success":true,
+  "errorCode":0,
+  "errorMsg":"ok",
+  "data": {
+    "strategyType": ["SingleMarketMaker, VolumeMaker, ArbitrageQuote, SpeedOrder"],
+    "side": ["Bid", "Ask"],
+    "symbol": [
+      {
+        "counterParty": "binance",
+        "symbols": ["ETH-USDT", "ETH-BTC"]
+      }
+    ],
+    "currency": ["ETH", "USDT", "BTC"]
+  }
+}
+```
+
+
+
 ### /config/strategy/custom/{uid}/items _[GET, Authentication]_
 
 #### list of strategy items list can refer [REST API document](strategy.md)
