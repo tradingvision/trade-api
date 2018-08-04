@@ -1338,6 +1338,53 @@ ok response
 | 500 | Unexpected Error (wrong owner) |
 
 
+### /strategy/stop-all _[POST, Authentication]_
+strategy status transision:
+
+- `running` --> `stopped`
+- `stopped` --> `stopped`
+- `left` --> `stopped`
+
+request
+
+```javascript
+{
+  "uid": "123"
+}
+```
+
+ok response
+
+```javascript
+{
+  "success":true,
+  "errorCode":0,
+  "errorMsg":"ok",
+  "data":{
+    "status": [
+      {
+        "id": "1",
+        "status": "stopped"
+      },
+      {
+        "id": "2",
+        "status": "stopped"
+      },
+      {
+        "id": "3",
+        "status": "stopped"
+      }
+    ]
+  }
+}
+```
+
+| error_code | reason |
+|:---:|---|
+| 0 | OK |
+| 500 | Unexpected Error (wrong owner) |
+
+
 ## leave strategy
 ### /strategy/leave _[POST, Authentication]_
 
@@ -1369,7 +1416,57 @@ ok response
 | 0 | OK |
 | 500 | Unexpected Error (wrong owner) |
 
+### /strategy/leave-all _[POST, Authentication]_
 
+strategy status transision:
+
+- `running` --> `left`
+- `stopped` --> `stopped`
+- `left` --> `left`
+
+
+request
+
+```javascript
+{
+  "uid": "123",
+  "id": "1"
+}
+```
+
+ok response
+
+```javascript
+{
+  "success":true,
+  "errorCode":0,
+  "errorMsg":"ok",
+  "data":{
+    "status": [
+      {
+        "id": "1",
+        "status": "left"
+      },
+      {
+        "id": "2",
+        "status": "stopped"
+      },
+      {
+        "id": "3",
+        "status": "left"
+      }
+    ]
+  }
+}
+```
+
+| error_code | reason |
+|:---:|---|
+| 0 | OK |
+| 500 | Unexpected Error (wrong owner) |
+
+
+## strategy status
 ### /strategy/status/{uid} _[GET, Authentication]_
 
 
