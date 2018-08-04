@@ -1281,50 +1281,20 @@ request
 
 ```javascript
 {
-  "userid": "123",
-  "strategy": {
-      "id": "1",
-      'name': 'octmm',
-      'exchange': 'binance',
-      'strategyType': 'SingleMarketMaker',
-      'symbols': [{
-        'name': 'OCT-ETH',
-        'currency': 'ETH',
-        'strategy': 'octmm',
-        'margin': 0.1,
-        'orderNumber': 10,
-        'spreadPct': 0.03,
-        'orderQty': 10,
-        'qtyVar': 0.01,
-        'priceStep': 0.0001,
-        'priceVar': 0.0001
-      }, {
-        'name': 'OCT-BTC',
-        'currency': 'BTC',
-        'strategy': 'octmm',
-        'margin': 0.01,
-        'orderNumber': 10,
-        'spreadPct': 0.03,
-        'orderQty': 10,
-        'qtyVar': 0.01,
-        'priceStep': 0.0001,
-        'priceVar': 0.0001
-      }]
-    }
+  "uid": "123",
+  "id": "1"
 }
 ```
 
 ok response
 ```javascript
 {
-  "success": true,
-  "seq_no": 0,
-  "error_code": 0,
-  "data": {
-    "strategy": {
-      "id": "1",
-      "status": "running"
-    }
+  "success":true,
+  "errorCode":0,
+  "errorMsg":"ok",
+  "data":{
+    "id":"1",
+    "status":"running"
   }
 }
 ```
@@ -1341,40 +1311,10 @@ ok response
 
 request
 
-
 ```javascript
 {
-  "userid": "123",
-  "strategy": { 
-    "id":  "1", 
-    "bCancel": true,
-    'name': 'octmm',
-    'exchange': 'binance',
-    'strategyType': 'SingleMarketMaker',
-    'symbols': [{
-      'name': 'OCT-ETH',
-      'currency': 'ETH',
-      'strategy': 'octmm',
-      'margin': 0.1,
-      'orderNumber': 10,
-      'spreadPct': 0.03,
-      'orderQty': 10,
-      'qtyVar': 0.01,
-      'priceStep': 0.0001,
-      'priceVar': 0.0001
-    }, {
-      'name': 'OCT-BTC',
-      'currency': 'BTC',
-      'strategy': 'octmm',
-      'margin': 0.01,
-      'orderNumber': 10,
-      'spreadPct': 0.03,
-      'orderQty': 10,
-      'qtyVar': 0.01,
-      'priceStep': 0.0001,
-      'priceVar': 0.0001
-    }]
-  }
+  "uid": "123",
+  "id": "1"
 }
 ```
 
@@ -1382,14 +1322,12 @@ ok response
 
 ```javascript
 {
-  "success": true,
-  "seq_no": 0,
-  "error_code": 0,
-  "data": {
-    "strategy": { 
-      "id":  "1"，
-      'status': "stopped"
-    }
+  "success":true,
+  "errorCode":0,
+  "errorMsg":"ok",
+  "data":{
+    "id":"1",
+    "status":"stopped"
   }
 }
 ```
@@ -1399,45 +1337,29 @@ ok response
 | 0 | OK |
 | 500 | Unexpected Error (wrong owner) |
 
-<<<<<<< HEAD
+
 ## leave strategy
-### /strategy/stop _[POST, Authentication]_
+### /strategy/leave _[POST, Authentication]_
 
 request
 
+```javascript
+{
+  "uid": "123",
+  "id": "1"
+}
+```
+
+ok response
 
 ```javascript
 {
-  "userid": "123",
-  "strategy": { 
-    "id":  "1", 
-    "bCancel": false,
-    'name': 'octmm',
-    'exchange': 'binance',
-    'strategyType': 'SingleMarketMaker',
-    'symbols': [{
-      'name': 'OCT-ETH',
-      'currency': 'ETH',
-      'strategy': 'octmm',
-      'margin': 0.1,
-      'orderNumber': 10,
-      'spreadPct': 0.03,
-      'orderQty': 10,
-      'qtyVar': 0.01,
-      'priceStep': 0.0001,
-      'priceVar': 0.0001
-    }, {
-      'name': 'OCT-BTC',
-      'currency': 'BTC',
-      'strategy': 'octmm',
-      'margin': 0.01,
-      'orderNumber': 10,
-      'spreadPct': 0.03,
-      'orderQty': 10,
-      'qtyVar': 0.01,
-      'priceStep': 0.0001,
-      'priceVar': 0.0001
-    }]
+  "success":true,
+  "errorCode":0,
+  "errorMsg":"ok",
+  "data":{
+    "id":"1",
+    "status":"left"
   }
 }
 ```
@@ -1456,8 +1378,8 @@ ok response
 ```javascript
 {
   "success": true,
-  "seq_no": 0,
-  "error_code": 0,
+  "errorCode": 0,
+  "errorMsg": "ok",
   "data": {
     "status": [
       {
@@ -1467,6 +1389,10 @@ ok response
       {
         "id": "2",
         "status": "stopped"
+      },
+      {
+        "id": "3",
+        "status": "left"
       }
     ]
   }
