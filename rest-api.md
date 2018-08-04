@@ -1429,8 +1429,7 @@ request
 
 ```javascript
 {
-  "uid": "123",
-  "id": "1"
+  "uid": "123"
 }
 ```
 
