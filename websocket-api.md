@@ -161,7 +161,24 @@ Notice:
 {
   "type":"SUB.SIMPLE_PRICE",
   "seq":1,
-  "data":null
+  "data":[
+    {
+      "symbol":"BTC-USDT",
+      "counterParty":"binance"
+    },
+    {
+      "symbol":"BTC-USDT",
+      "counterParty":"okcoin"
+    },
+    {
+      "symbol":"BTC-USDT",
+      "counterParty":"fcoin"
+    },
+    {
+      "symbol":"BTC-USDT",
+      "counterParty":"huobi"
+    }
+  ]
 }
 ```
 
