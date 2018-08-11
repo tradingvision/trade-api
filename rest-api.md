@@ -107,7 +107,9 @@ Error Response: `HTTP code 403`
           "priceDecimal":2, // when create order, price precision at most 0.01
           "quantityDecimal":4, // when create order, quantity precision at most 0.0001
           "quantityMin":0.001, // when create order, minimum quantity 0.001
-          "quantityMax":10000.0 // when create order, maximum quantity 10000.0
+          "quantityMax":10000.0, // when create order, maximum quantity 10000.0
+          "priceStep":0.001,
+          "quantityStep":100.0
         }
       ]
     },
@@ -121,7 +123,9 @@ Error Response: `HTTP code 403`
           "priceDecimal":2,
           "quantityDecimal":4,
           "quantityMin":0.001,
-          "quantityMax":10000.0
+          "quantityMax":10000.0,
+          "priceStep":0.001,
+          "quantityStep":100.0
         }
       ]
     }
