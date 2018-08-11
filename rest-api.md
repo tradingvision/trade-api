@@ -337,7 +337,7 @@ Response Body
   "errorCode":0,
   "errorMsg":"ok",
   "data": {
-    "strategyType": ["SingleMarketMaker, VolumeMaker, ArbitrageQuote, SpeedOrder"],
+    "strategyType": ["Arbitrage","AutoSpreadingPct","AutoSpreadingValue","SingleMarketMaker","SpeedOrder","Triangular", "VolumeMarketMaker"],
     "side": ["Bid", "Ask", "Both"],
     "symbol": [
       {
@@ -1135,7 +1135,7 @@ error response
 ```
 
 
-### /user/pwd/change _[POST, Authentication]_ (Not Released)
+### /user/pwd/change _[POST, Authentication]_ 
 
 request
 
@@ -1146,8 +1146,18 @@ request
   "newPassword": "new_password"
 }
 ```
+response
 
-### /user/phone/verify _[POST, Authentication]_ (Not Released)
+```javascript
+{
+    "success": true,
+    "errorCode": 0,
+    "errorMsg": "ok",
+    "data": null
+}
+```
+
+### /user/phone/verify _[POST, Authentication]_
 request
 
 ```javascript
@@ -1157,8 +1167,18 @@ request
   "countryCode": "+86"
 }
 ```
+response
 
-### /user/phone/bind _[POST, Authentication]_ (Not Released)
+```javascript
+{
+    "success": true,
+    "errorCode": 0,
+    "errorMsg": "ok",
+    "data": null
+}
+```
+
+### /user/phone/bind _[POST, Authentication]_ 
 
 request
 
@@ -1171,26 +1191,61 @@ request
 }
 ```
 
-### /user/totp/new _[POST, Authentication]_ (Not Released)
+response
+
+```javascript
+{
+    "success": true,
+    "errorCode": 0,
+    "errorMsg": "ok",
+    "data": null
+}
+```
+
+### /user/totp/new _[POST, Authentication]_
+
+request
+
+```javascript
+{
+  "uid": 1234
+}
+```
 
 response
 
 ```javascript
 {
-  "bind": false
-  "hashKey": "asbcas123sdasd",
-  "qrCodeText": "asbcas123sdasdasbcas123sdasd" // javascript generate QR code
+  "success":true,
+  "errorCode":0,
+  "errorMsg":"ok",
+  "data":{
+    "hashKey":"asbcas123sdasd",
+    "qrCodeText":"asbcas123sdasdasbcas123sdasd",
+    "qrCodeUrl":"http://xxxxx"
+  }
 }
 ```
 
-### /user/totp/bind _[POST, Authentication]_ (Not Released)
+### /user/totp/bind _[POST, Authentication]_ 
 
-response
+request
 
 ```javascript
 {
   "uid": 1234
   "authCode": "025187" // auth code from google authenticator
+}
+```
+
+response
+
+```javascript
+{
+    "success": true,
+    "errorCode": 0,
+    "errorMsg": "ok",
+    "data": null
 }
 ```
 
