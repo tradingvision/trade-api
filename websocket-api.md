@@ -301,6 +301,7 @@ Notice:
   "type":"USER_ORDER",
   "data":{
     "status":"INACTIVE",
+    "sequence":1534926182000,
     "order":{
       "streetOrderId":"1234567",
       "orderType":"LIMIT",
