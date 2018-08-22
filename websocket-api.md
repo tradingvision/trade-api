@@ -271,6 +271,7 @@ Notice:
   "type":"USER_ORDER",
   "data":{
     "status":"ACTIVE",
+    “sequence":1534926182,
     "order":{
       "streetOrderId":"1234567",
       "orderType":"LIMIT",
