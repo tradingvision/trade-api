@@ -916,38 +916,41 @@ Response body (order by ORDER createTime DESC)
   "success":true,
   "errorCode":0,
   "errorMsg":"ok",
-  "data":[
-    {
-      "streetOrderId":"1234567",
-      "orderType":"LIMIT",
-      "symbol":"BTC-USDT",
-      "side":"BID",
-      "owner":"2",
-      "counterParty":"binance",
-      "price":"0.00123",
-      "quantity":"10.000",
-      "filledPrice":"0.00",
-      "filledQuantity":"0.00",
-      "executionType":"EXECUTION_ACK",
-      "createTime":1530861306000,
-      "processedTime":1530861306000
-    },
-    {
-      "streetOrderId":"1345678",
-      "orderType":"LIMIT",
-      "symbol":"BTC-USDT",
-      "side":"ASK",
-      "owner":"2",
-      "counterParty":"huobi",
-      "price":"0.00123",
-      "quantity":"10.000",
-      "filledPrice":"0.00",
-      "filledQuantity":"0.00",
-      "executionType":"EXECUTION_PARTIAL_FILLED",
-      "createTime":1530861306000,
-      "processedTime":1530861306000
-    }
-  ]
+  "data":{
+    "sequence":1534926182000,
+    "orders":[
+      {
+        "streetOrderId":"1234567",
+        "orderType":"LIMIT",
+        "symbol":"BTC-USDT",
+        "side":"BID",
+        "owner":"2",
+        "counterParty":"binance",
+        "price":"0.00123",
+        "quantity":"10.000",
+        "filledPrice":"0.00",
+        "filledQuantity":"0.00",
+        "executionType":"EXECUTION_ACK",
+        "createTime":1530861306000,
+        "processedTime":1530861306000
+      },
+      {
+        "streetOrderId":"1345678",
+        "orderType":"LIMIT",
+        "symbol":"BTC-USDT",
+        "side":"ASK",
+        "owner":"2",
+        "counterParty":"huobi",
+        "price":"0.00123",
+        "quantity":"10.000",
+        "filledPrice":"0.00",
+        "filledQuantity":"0.00",
+        "executionType":"EXECUTION_PARTIAL_FILLED",
+        "createTime":1530861306000,
+        "processedTime":1530861306000
+      }
+    ]
+  }
 }
 ```
 
