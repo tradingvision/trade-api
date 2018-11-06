@@ -321,3 +321,20 @@ Notice:
 }
 ```
 
+#### Contract Position
+
+```javascript
+{
+	"type": "CONTRACT_POSITION",
+	"data": {
+		"owner": "14",
+		"counterParty": "bitmex",
+		"symbol": "XBT-Z18",
+		"lastPrice": "6484.34",
+		"liquidationPrice": "100000000",
+		"contractQuantity": -1, // quantity in contract
+		"simpleQuantity": "-0.000154", // quantity in BTC
+		"timestamp": 1541548096050
+	}
+}
+```
