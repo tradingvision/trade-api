@@ -338,3 +338,34 @@ Notice:
   }
 }
 ```
+
+### Matrix Price
+
+#### Subscribe
+```javascipt
+{
+  "type":"SUB.MATRIX_PRICE",
+  "seq":1,
+  "data":[
+    "BTC-USDT",
+    "ETH-USDT"
+  ]
+}
+```
+
+#### data
+```javascipt
+{
+  "symbol":"BTC-USDT",
+  "counterParty":[
+    "huobi",
+    "okex",
+    "binance"
+  ],
+  "matrix":{
+    "huobi":1.23,
+    "okex":1.23,
+    "binance":1.23
+  }
+}
+```
