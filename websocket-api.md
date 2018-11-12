@@ -356,16 +356,20 @@ Notice:
 #### data
 ```javascipt
 {
-  "symbol":"BTC-USDT",
+  "symbol":"ETH-USDT",
   "counterParty":[
-    "huobi",
-    "okex",
-    "binance"
+    "binance",
+    "huobi"
   ],
   "matrix":{
-    "huobi":1.23,
-    "okex":1.23,
-    "binance":1.23
+    "binance":[
+      -0.060000000000002274,
+      -0.12000000000000455
+    ],
+    "huobi":[
+      0.04999999999998295,
+      -0.010000000000019327
+    ]
   }
 }
 ```
