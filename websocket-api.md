@@ -373,3 +373,24 @@ Notice:
   }
 }
 ```
+
+### Aggregator Price
+
+#### Subscribe
+
+```javascript
+{
+  "type":"SUB.AGG_PRICE",
+  "seq":1,
+  "data":[
+    {
+      "symbol":"BTC-USDT",
+      "group":"g1234"
+    },
+    {
+      "symbol":"ETH-USDT",
+      "group":"g4567"
+    }
+  ]
+}
+```
