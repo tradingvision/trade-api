@@ -394,3 +394,48 @@ Notice:
   ]
 }
 ```
+
+#### Data
+```javascript
+{
+  "type":"AGG_PRICE",
+  "data":{
+    "group":"g1234",
+    "symbol":"BTC-USDT",
+    "bids":[
+      {
+        "price":"6323.98000000",
+        "quantity":"2.87027100",
+        "counterParty":"huobi"
+      },
+      {
+        "price":"6322.99000000",
+        "quantity":"1.78365300",
+        "counterParty":"okex"
+      },
+      {
+        "price":"6316.98000000",
+        "quantity":"0.63262900",
+        "counterParty":"bitfinex"
+      }
+    ],
+    "asks":[
+      {
+        "price":"6324.86000000",
+        "quantity":"0.02246900",
+        "counterParty":"bitfinex"
+      },
+      {
+        "price":"6325.00000000",
+        "quantity":"3.13870000",
+        "counterParty":"huobi"
+      },
+      {
+        "price":"6325.50000000",
+        "quantity":"0.10000000",
+        "counterParty":"okex"
+      }
+    ]
+  }
+}
+```
