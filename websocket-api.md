@@ -459,6 +459,7 @@ topic:
   "data":[
     "forex",
     "commodity",
+    "cryptocurrency"
   ]
 }
 ```
@@ -466,20 +467,17 @@ topic:
 #### data
 ```javascipt
 {
-  "symbol":"ETH-USDT",
-  "counterParty":[
-    "binance",
-    "huobi"
-  ],
-  "matrix":{
-    "binance":[
-      -0.060000000000002274,
-      -0.12000000000000455
-    ],
-    "huobi":[
-      0.04999999999998295,
-      -0.010000000000019327
-    ]
-  }
-}
-```
+  "type":"FINANCE_TICK",
+  "data":[
+    {
+      "ts":1544842656000,
+      "source":"wallstreetcn",
+      "market":"cryptocurrency",
+      "symbol":"LTCUSD",
+      "open":22.75,
+      "high":23.46,
+      "low":22.3,
+      "close":23.17
+    }
+  ]
+}```
