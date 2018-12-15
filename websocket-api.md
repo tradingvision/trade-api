@@ -439,3 +439,47 @@ Notice:
   }
 }
 ```
+
+### Finance Tick
+
+topic:
+- "forex",
+- "commodity",
+- "index",
+- "bond",
+- "cnStock",
+- "hkStock",
+- "cryptocurrency"
+
+#### Subscribe
+```javascipt
+{
+  "type":"SUB.FINANCE_TICK",
+  "seq":1,
+  "data":[
+    "forex",
+    "commodity",
+  ]
+}
+```
+
+#### data
+```javascipt
+{
+  "symbol":"ETH-USDT",
+  "counterParty":[
+    "binance",
+    "huobi"
+  ],
+  "matrix":{
+    "binance":[
+      -0.060000000000002274,
+      -0.12000000000000455
+    ],
+    "huobi":[
+      0.04999999999998295,
+      -0.010000000000019327
+    ]
+  }
+}
+```
